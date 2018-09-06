@@ -24,7 +24,7 @@ sudo apt install -y libc6:i386 libncurses5:i386 libstdc++6:i386 zlib1g:i386 zlib
 ## Fix stat in 32bit binaries
 
 Many of 32bit apps cannot handle 64bit inodes of WSL filesystems.
-We can replace stat() with function that will partially support 64bit inodes by at least giving file properties (it will still return EOVERFLOW for files with inode >= 2^32, but at least struct with properties will have some info).
+We can replace stat() with function that will partially support 64bit inodes by at least giving file properties (for example it will return EOVERFLOW for file size >= 2^32, but at least struct with properties will have some info).
 
 Clone this repo and go to **wsl_32bit_support** folder.
 First you need to build shared libs with changed stat that we will use for preload:
